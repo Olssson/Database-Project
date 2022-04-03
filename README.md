@@ -3,6 +3,7 @@ Aplikacja – Sklep
 
 BUSINESS REQUIREMENTS:
 - Projektem będzie sklep spożywczy z produktami 18+ (alkohole i papierosy) i bez ograniczeń.
+
 FUNCTIONAL REQUIREMENTS:
 - Użytkownik będzie mógł założyć konto w module “logowanie”:
 o Obszar, w który będzie musiał wprowadzić adres e-mail
