@@ -2,8 +2,8 @@
 const express = require("express");
 const mysql = require("mysql")
 const dotenv = require("dotenv");
-const path = require('path')
-// const { path } = require("express/lib/application");
+const path = require('path');
+const exp = require("constants");
 
 dotenv.config({ path: './.env'});
 
@@ -17,9 +17,9 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 // console.log(__dirname)
-const publicDirectory = path.join(__dirname)
-// const publicDirectory = __dirname + '\\views'
-console.log(publicDirectory)
+const publicDirectory = path.join(__dirname, './public')
+app.use(express.static(publicDirectory));
+
 app.set('view engine', 'hbs');
 
 db.connect( (error) =>{
@@ -33,7 +33,10 @@ db.connect( (error) =>{
 )
 
 app.get("/", (req, res) => {
-    res.send("<h1>DYZIO</h1>")
+    res.render("index");
+});
+app.get("/register", (req, res) => {
+    res.render("register");
 });
 
 app.listen(2137, () =>{
