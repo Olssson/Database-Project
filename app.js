@@ -31,13 +31,8 @@ db.connect( (error) =>{
     }    
 }
 )
-
-app.get("/", (req, res) => {
-    res.render("index");
-});
-app.get("/register", (req, res) => {
-    res.render("register");
-});
+app.use('/', require('./routes/pages'))
+app.use('/auth', require('./routes/auth'));
 
 app.listen(2137, () =>{
     console.log("Server Start on port 2137");
