@@ -22,6 +22,9 @@ app.use(express.static(publicDirectory));
 
 app.set('view engine', 'hbs');
 
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+
 db.connect( (error) =>{
     if(error) {
         console.log(error)
@@ -29,9 +32,8 @@ db.connect( (error) =>{
     else {
         console.log("Dzieńki działa")
     }    
-}
-)
-app.use('/', require('./routes/pages'))
+})
+app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 
 app.listen(2137, () =>{
