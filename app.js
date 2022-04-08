@@ -1,4 +1,5 @@
 //npm start
+//npm i nodemon mysql hbs express dotenv
 const express = require("express");
 const mysql = require("mysql")
 const dotenv = require("dotenv");
@@ -16,7 +17,7 @@ const db = mysql.createConnection({
     password:process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE
 });
-// console.log(__dirname)
+//console.log(__dirname)
 const publicDirectory = path.join(__dirname, './public')
 app.use(express.static(publicDirectory));
 
