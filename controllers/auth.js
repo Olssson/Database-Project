@@ -1,4 +1,7 @@
 const mysql = require("mysql")
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const async = require("hbs/lib/async");
 const db = mysql.createConnection({
     //w nazwie hosta jak chcem wstawić stronę na server należy zmienić nazwę z localhost na np ip
     host: process.env.DATABASE_HOST,
@@ -9,14 +12,9 @@ const db = mysql.createConnection({
 exports.register = (req, res) => {
     console.log(req.body);
 
-    const name = req.body.name;
-    const surname = req.body.surname;
-    const BirthDate = req.body.BirthDate;
-    const email = req.body.email;
-    const password = req.body.password;
-    const passwordConfirm = req.body.passwordConfirm;
+    const {name, email, surname, BirthDate, password, passwordConfirm} = req.body;
 
-    db.query("SELECT E-mail FROM klient WHER E-mail = ?", [email], (error, results) => {
+    db.query("SELECT E-mail FROM klient WHER E-mail = ?", [email], async (error, results) => {
         if(error){
             console.log(error)
         }
@@ -25,12 +23,13 @@ exports.register = (req, res) => {
             return res.render('register', {
                 message: 'Już istnieje użytkownik z takie E-mailem'
             })
-        }
-        else if (password !== passwordConfirm) {
+        }else if (password !== passwordConfirm) {
         return res.render('register', {
             message: 'Złe hasło'
-        });
-    }    
-    })
-    res.send("Zarejestrowałeś się")
+            });
+        }
+        
+        let hashedPassword = await bcrypt.hash(password, 7);
+        console.log(hashedPassword);
+    });
 }

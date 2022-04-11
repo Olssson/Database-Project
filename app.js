@@ -1,5 +1,5 @@
 //npm start
-//npm i nodemon mysql hbs express dotenv
+//npm i nodemon mysql hbs express dotenv cookie-parser jsonwebtoken
 const express = require("express");
 const mysql = require("mysql")
 const dotenv = require("dotenv");
