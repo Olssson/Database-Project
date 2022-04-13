@@ -37,6 +37,6 @@ db.connect( (error) =>{
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 
-app.listen(2137, () =>{
-    console.log("Server Start on port 2137");
+app.listen(5000, () =>{
+    console.log("Server Start on port 5000");
 })

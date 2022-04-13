@@ -14,11 +14,7 @@ exports.register = (req, res) => {
 
     const {name, email, surname, BirthDate, password, passwordConfirm} = req.body;
 
-    db.query("SELECT E-mail FROM klient WHER E-mail = ?", [email], async (error, results) => {
-        if(error){
-            console.log(error)
-        }
-
+    db.query("SELECT `e-mail` FROM login WHERE `e-mail` = ?", [email], async (error, results) => {
         if(results.lenght > 0){
             return res.render('register', {
                 message: 'Już istnieje użytkownik z takie E-mailem'
