@@ -26,6 +26,8 @@ exports.register = (req, res) => {
         }
         
         let hashedPassword = await bcrypt.hash(password, 7);
+
+        res.redirect('/login')
         console.log(hashedPassword);
     });
 }
