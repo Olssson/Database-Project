@@ -14,7 +14,7 @@ exports.register = (req, res) => {
 
     const {name, email, surname, BirthDate, password, passwordConfirm} = req.body;
 
-    db.query("SELECT `e-mail` FROM login WHERE `e-mail` = ?", [email], async (error, results) => {
+    db.query("SELECT `email` FROM login WHERE `email` = ?", [email], async (error, results) => {
         if(results.lenght > 0){
             return res.render('register', {
                 message: 'Już istnieje użytkownik z takie E-mailem'
@@ -27,7 +27,7 @@ exports.register = (req, res) => {
         
         let hashedPassword = await bcrypt.hash(password, 7);
         
-        db.query('INSERT INTO login SET ?', {name: Imie, surname:Nazwisko, email: e-email, haslo:hashedPassword , BirthDate:dataurodzenia}, (error, results)=>{
+        db.query('INSERT INTO login SET ?', {name: name, surname:surname, email:email, password:password , BirthDate:BirthDate}, (error, results)=>{
             if(error) {
                 console.log(error);
             } else {
