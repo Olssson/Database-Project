@@ -37,7 +37,7 @@ exports.register = (req, res) => {
                     });
             }
         })
-        res.redirect('/login')
+        res.redirect('/../views/login.hbs')
         console.log(hashedPassword);
     });
 }
