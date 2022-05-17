@@ -31,3 +31,12 @@ nav li a:hover {
     color: black;
     text-decoration: none;
 }
+.card-body {
+    width: 500px;
+    text-align: center;
+}
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
