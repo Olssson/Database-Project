@@ -17,8 +17,8 @@ router.get('/login', (req,res) => {
 router.post('/login', function(request, response) {
 	var email = request.body.email;
 	var password = request.body.password;
-    var name = request.body.name;
-    var surname = request.bisy.surname;
+
+	var name = request.body.name;
 	if (email && password) {
         const connection = mysql.createConnection({
             host     : 'localhost',
@@ -41,14 +41,13 @@ router.post('/login', function(request, response) {
 		response.send('Please enter Username and Password!');
 		response.end();
 	}
-    connection.query('SELECT * FROM login WHERE email = ?', [email])
 });
 
 router.get('/user', function(request, response) {
 	if (request.session.loggedin) {
 		response.render('user', {
             email: request.session.email,
-        name: 'ttctfctfc'})
+        	name: 'ttctfctfc'})
         
 	} else {
 		response.send('Please login to view this page!');
