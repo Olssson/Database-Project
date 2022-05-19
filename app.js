@@ -5,6 +5,7 @@ const mysql = require("mysql")
 const dotenv = require("dotenv");
 const path = require('path');
 const exp = require("constants");
+const session = require('express-session');
 
 dotenv.config({ path: './.env'});
 
@@ -25,6 +26,12 @@ app.set('view engine', 'hbs');
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+
+app.use(session({
+    secret: 'iLoveSql',
+    resave: false,
+    saveUninitialized: false
+  }));
 
 db.connect( (error) =>{
     if(error) {

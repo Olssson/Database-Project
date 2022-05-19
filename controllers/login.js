@@ -33,7 +33,7 @@ app.post('/login', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
-				response.redirect('/index');
+				response.redirect('/user');
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			
@@ -45,7 +45,7 @@ app.post('/login', function(request, response) {
 	}
 });
 
-app.get('/index', function(request, response) {
+app.get('/user', function(request, response) {
 	if (request.session.loggedin) {
 		response.send('Welcome back, ' + request.session.username + '!');
 	} else {
