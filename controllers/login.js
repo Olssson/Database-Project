@@ -44,6 +44,13 @@ app.post('/login', function(request, response) {
 		response.end();
 	}
 });
+connection.connect(function(err) {
+	if (err) throw err;
+	connection.query("SELECT * FROM login WHERE email", function (err, result, fields) {
+	  if (err) throw err;
+	  console.log(result);
+	});
+  });
 
 app.get('/user', function(request, response) {
 	if (request.session.loggedin) {

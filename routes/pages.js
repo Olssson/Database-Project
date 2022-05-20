@@ -1,6 +1,14 @@
 const express = require('express');
+const req = require('express/lib/request');
 const router = express.Router();
 const mysql = require('mysql');
+const connection = mysql.createConnection({
+	host     : 'localhost',
+	user     : 'root',
+	password : '',
+	database : 'login'
+});
+
 
 router.get('/', (req,res) => {
     res.render('index');
@@ -20,17 +28,15 @@ router.post('/login', function(request, response) {
 
 	var name = request.body.name;
 	if (email && password) {
-        const connection = mysql.createConnection({
-            host     : 'localhost',
-            user     : 'root',
-            password : '',
-            database : 'login'
-        });
+        
 
 		connection.query('SELECT * FROM login WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
+				request.session.name = results[0].name;
+
+				console.log(results[0].password)
 				response.redirect('/user');
 			} else {
 				response.send('Incorrect Username and/or Password!');
@@ -45,9 +51,18 @@ router.post('/login', function(request, response) {
 
 router.get('/user', function(request, response) {
 	if (request.session.loggedin) {
+		var name = request.body.name;
+		var surname = request.body.surname;
+		
+		connection.query('SELECT * FROM login WHERE email = ?', [request.session.email], function(error, results, fields) {
+			console.log(results[0].password);
+			console.log(results[0].name);		
+			// response.end();
+		});
 		response.render('user', {
             email: request.session.email,
-        	name: 'ttctfctfc'})
+		 	name: request.session.name,
+         	})
         
 	} else {
 		response.send('Please login to view this page!');
