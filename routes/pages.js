@@ -53,15 +53,19 @@ router.get('/user', function(request, response) {
 	if (request.session.loggedin) {
 		var name = request.body.name;
 		var surname = request.body.surname;
+		var BirthDate = request.body.BirthDate;
 		
 		connection.query('SELECT * FROM login WHERE email = ?', [request.session.email], function(error, results, fields) {
 			console.log(results[0].password);
-			console.log(results[0].name);		
+			console.log(results[0].name);
+			console.log(results[0].BirthDate);			
 			// response.end();
 		});
 		response.render('user', {
             email: request.session.email,
 		 	name: request.session.name,
+			surname: request.session.surname,
+			BirthDate: request.session.BirthDate,
          	})
         
 	} else {
