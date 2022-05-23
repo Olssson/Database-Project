@@ -35,6 +35,7 @@ router.post('/login', function(request, response) {
 				request.session.loggedin = true;
 				request.session.email = email;
 				request.session.name = results[0].name;
+				request.session.surname = results[0].surname;
 
 				console.log(results[0].password)
 				response.redirect('/user');
@@ -51,14 +52,12 @@ router.post('/login', function(request, response) {
 
 router.get('/user', function(request, response) {
 	if (request.session.loggedin) {
-		var name = request.body.name;
-		var surname = request.body.surname;
-		var BirthDate = request.body.BirthDate;
 		
 		connection.query('SELECT * FROM login WHERE email = ?', [request.session.email], function(error, results, fields) {
 			console.log(results[0].password);
 			console.log(results[0].name);
-			console.log(results[0].BirthDate);			
+			console.log(results[0].BirthDate);		
+			console.log(results[0].surname);	
 			// response.end();
 		});
 		response.render('user', {
