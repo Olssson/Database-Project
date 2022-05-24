@@ -36,6 +36,7 @@ router.post('/login', function(request, response) {
 				request.session.email = email;
 				request.session.name = results[0].name;
 				request.session.surname = results[0].surname;
+				request.session.BirthDate = results[0].BirthDate;
 
 				console.log(results[0].password)
 				response.redirect('/user');
