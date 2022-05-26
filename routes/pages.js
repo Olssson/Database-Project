@@ -66,7 +66,7 @@ router.get('/user', function(request, response) {
 		 	name: request.session.name,
 			surname: request.session.surname,
 			BirthDate: request.session.BirthDate,
-         	})
+         	});
         
 	} else {
 		response.send('Please login to view this page!');
