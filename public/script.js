@@ -1,6 +1,4 @@
-var mysql = require('mysql');
-var express = require('express');
-var session = require('express-session');
+
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)

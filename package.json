@@ -20,13 +20,18 @@
   "homepage": "https://github.com/Olssson/Database-Project#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "express-session": "^1.17.3"
+  },
+  "devDependencies": {
     "cookie-parser": "^1.4.6",
+    "dot": "^1.1.3",
     "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "express-session": "^1.17.3",
     "hbs": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "stripe": "^9.6.0"
   }
 }
