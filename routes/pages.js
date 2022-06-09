@@ -2,6 +2,7 @@ const express = require('express');
 const req = require('express/lib/request');
 const router = express.Router();
 const mysql = require('mysql');
+var moment = require('moment');
 const connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
@@ -11,7 +12,12 @@ const connection = mysql.createConnection({
 
 
 router.get('/', (req,res) => {
-    res.render('index');
+	if (req.session.loggedin) {
+		res.render('index');
+	} else {
+		res.render('niezalogowany');
+	}
+    
 });
 router.get('/register', (req,res) => {
     res.render('register');
@@ -38,11 +44,10 @@ router.post('/login', function(request, response) {
 				request.session.surname = results[0].surname;
 				request.session.BirthDate = results[0].BirthDate;
 
-				console.log(results[0].password)
 				response.redirect('/user');
 			} else {
 				response.send('Incorrect Username and/or Password!');
-			}			
+			}
 			response.end();
 		});
 	} else {
@@ -57,9 +62,17 @@ router.get('/user', function(request, response) {
 		connection.query('SELECT * FROM login WHERE email = ?', [request.session.email], function(error, results, fields) {
 			console.log(results[0].password);
 			console.log(results[0].name);
-			console.log(results[0].BirthDate);		
-			console.log(results[0].surname);	
+			console.log(results[0].BirthDate);
+			console.log(results[0].surname);
+
 			// response.end();
+
+			var dateNow = new Date()
+			console.log(dateNow)
+
+			var Check18 = results[0].BirthDate.valueOf() - dateNow
+			var m = Math.abs(Check18)
+			console.log(m)
 		});
 		response.render('user', {
             email: request.session.email,
@@ -69,9 +82,7 @@ router.get('/user', function(request, response) {
          	});
         
 	} else {
-		response.send('Please login to view this page!');
+		response.redirect('/');
 	}
 });
-
-
 module.exports = router;

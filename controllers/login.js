@@ -29,7 +29,7 @@ app.post('/login', function(request, response) {
 	var email = request.body.email;
 	var password = request.body.password;
 	if (email && password) {
-		connection.query('SELECT * FROM login WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
+		connection.query('SELECT * , DATEDIFF(day, BirthDate, GETDATE()) AS DATEDIF FROM login WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
