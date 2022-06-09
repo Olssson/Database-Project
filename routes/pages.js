@@ -28,6 +28,10 @@ router.get('/login', (req,res) => {
     res.render('login');
 });
 
+router.get('/admin', (req,res) => {
+    res.render('admin');
+});
+
 router.post('/login', function(request, response) {
 	var email = request.body.email;
 	var password = request.body.password;
