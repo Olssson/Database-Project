@@ -27,19 +27,19 @@
                 <form action="/auth/register" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nazwa</label>
-                    <input type="text" class="form-control" id="name" name="text">
+                    <input type="text" class="form-control" id="name" name="name">
                 </div>
-                <div class="mb-3">
+                {{!-- <div class="mb-3">
                     <label for="image" class="form-label">Zdjęcie</label>
-                    <input type="file" class="form-control" id="image">
-                </div>
+                    <input type="file" class="form-control" id="image" name="image">
+                </div> --}}
                 <div class="mb-3">
                     <label for="price" class="form-label">Cena</label>
-                    <input type="number" class="form-control" id="price">
+                    <input type="number" class="form-control" id="price" name="price">
                 </div>
                 <div class="mb-3">
                     <label for="check18" class="form-label">Czy produkt jest ograniczony wiekiem</label>
-                    <input type="checkbox" id="check18">
+                    <input type="number" id="check18" name="check18">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-primary">Reset</button>

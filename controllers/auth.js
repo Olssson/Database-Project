@@ -9,6 +9,7 @@ const db = mysql.createConnection({
     password:process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE
 });
+
 exports.register = (req, res) => {
     console.log(req.body);
 
@@ -39,5 +40,30 @@ exports.register = (req, res) => {
         })
         res.redirect('/login')
         console.log(hashedPassword);
+    });
+}
+
+exports.admin = (req, res) => {
+    console.log(req.body);
+    
+    const {name, price, check18} = req.body;
+    
+    db.query("SELECT `name` FROM products WHERE `name` = ?", [name], async (error, results) => {
+        if(results.lenght > 0){
+            return res.render('admin', {
+                message: 'Już istnieje produkt o takiej nazwie'
+            })
+        }
+            
+        db.query('INSERT INTO products SET ?', {name:name, price:price, checkage:check18}, (error, results)=>{
+            if(error) {
+                console.log(error);
+            } else {
+                console.log(results);
+                return res.render('admin', {
+                    message: 'ok'
+                    });
+            }
+        })
     });
 }
