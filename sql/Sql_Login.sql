@@ -1,11 +1,1 @@
-CREATE TABLE Klient (
-Id INT NOT NULL PRIMARY KEY,
-Imie VARCHAR(30) NOT NULL CHECK(LEN(Imie) > 3),
-Nazwisko VARCHAR(30) NOT NULL CHECK(LEN(Nazwisko) > 3),
-Email VARCHAR(50) NOT NULL CHECK(LEN(Email) > 7),
-DataUrodzenia DATE NOT NULL,
-Haslo VARCHAR(25) NOT NULL CHECK(LEN(Haslo) > 8),
-RodzajUzytkownika VARCHAR(7) NOT NULL CHECK(RodzajUzytkownika IN ('ADMIN', 'USER')),
-AdresId INT NOT NULL REFERENCES AdresWysylki (Id),
-KoszykId INT NOT NULL REFERENCES Koszyk (Id),
-)
+CREATE TABLE `login`. ( `Id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(30) NOT NULL , `surname` VARCHAR(30) NOT NULL , `email` TEXT NOT NULL , `password` VARCHAR(50) NOT NULL , `BirthDate` DATE NOT NULL , `type` INT NOT NULL DEFAULT '0' , PRIMARY KEY (`Id`)) ENGINE = InnoDB; 

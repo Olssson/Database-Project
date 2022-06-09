@@ -40,6 +40,7 @@ router.post('/login', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
+				request.session.type = results[0].type;
 				request.session.name = results[0].name;
 				request.session.surname = results[0].surname;
 				request.session.BirthDate = results[0].BirthDate;
@@ -60,26 +61,31 @@ router.get('/user', function(request, response) {
 	if (request.session.loggedin) {
 		
 		connection.query('SELECT * FROM login WHERE email = ?', [request.session.email], function(error, results, fields) {
-			console.log(results[0].password);
-			console.log(results[0].name);
-			console.log(results[0].BirthDate);
-			console.log(results[0].surname);
 			// response.end();
 			var dateNow = new Date()
 			var DateNow = dateNow.toISOString().split('T')[0]
 			var DateUser = results[0].BirthDate.toISOString().split('T')[0]
-			console.log(DateNowa, DateUser)
-			console.log(parseInt(DateNow))
-			console.log(parseInt(DateUser))
-			
-			//var m = Math.abs(Check18)
-			//console.log(m)
+			if(parseInt(DateNow)-parseInt(DateUser) >= 18){
+				var adult = "Jesteś pełnoletni"
+			}else{
+				var adult =  "Jesteś niepełnoletni"
+			}
+			console.log(adult)
+			if(type = 0){
+				var admin = 'nie jesteś adminem'
+			}else{
+				var admin = 'witaj admin'
+			}
+			console.log(admin)
 		});
 		response.render('user', {
+			DateUser: request.session.DateUser,
+			adult: request.session.adult,
             email: request.session.email,
 		 	name: request.session.name,
 			surname: request.session.surname,
 			BirthDate: request.session.BirthDate,
+
          	});
         
 	} else {
