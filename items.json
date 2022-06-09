@@ -1,0 +1,43 @@
+{
+    "alkochole": [
+        {
+        "id": 1,
+        "name": "Jabol",
+        "price": 700,
+        "imgName": "z19135784V.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Dzik",
+            "price": 500,
+            "imgName": "DwgACqXWsAA9I7A.jpg"
+        },    
+        {
+            "id": 3,
+            "name": "Soplica",
+            "price": 2400,
+            "imgName": "square-home-01.png"
+        },
+        {
+            "id": 4,
+            "name": "Tyskie",
+            "price": 800,
+            "imgName": "717725.jpg"
+        }
+        
+    ],
+    "jedzenie": [
+      {
+        "id": 5,
+        "name": "Dwa Bulki",
+        "price": 100000,
+        "imgName": "maxresdefault.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Zupa z elfów i cebuili",
+        "price": 213700,
+        "imgName": "zupa-elfio-cebulowa-wojna-krwi-wiedxminskie-opowiesci.jpg"
+      }
+    ]
+}
