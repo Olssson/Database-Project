@@ -21,16 +21,14 @@
        <section class="container content-section">
             <h2 class="section-header">Sklep</h2>
             <div class="shop-items">
-                <%= items.alkochole.forEach(function(item){ %>
                     <div class="shop-item" data-item-id="">
-                        <span class="shop-item-title"><% = item.name %>/span>
+                        <span class="shop-item-title">ok</span>
                         <img class="shop-item-image" src="img/<% = item.imgName %>">
                         <div class="shop-item-details">
-                            <span class="shop-item-price">zł<% = item.price / 100 %></span>
+                            <span class="shop-item-price">zł100</span>
                             <button class="btn btn-primary shop-item-button" type="button">Dodaj do koszyka</button>
                         </div>
                     </div>
-                <% }) %>
         </section>
         <section class="container content-section">
             <h2 class="section-header">No dobra</h2>
@@ -90,11 +88,6 @@
                 </ul>
             </div>
         </footer>
-<<<<<<< HEAD:views/index.hbs
-    <script src="js/script.js"></script>
-=======
-    <script src="script.js"></script>
->>>>>>> 65f43003fa6813ee3ba30bfd2bff78bec1b2c029:views/index.ejs
     {{!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> --}}
 </body>
 </html>
