@@ -1,8 +1,3 @@
-<<<<<<<< HEAD:public/js/script.js
-========
-
->>>>>>>> 65f43003fa6813ee3ba30bfd2bff78bec1b2c029:public/script.js
-
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
