@@ -64,15 +64,16 @@ router.get('/user', function(request, response) {
 			console.log(results[0].name);
 			console.log(results[0].BirthDate);
 			console.log(results[0].surname);
-
 			// response.end();
-
 			var dateNow = new Date()
-			console.log(dateNow)
-
-			var Check18 = results[0].BirthDate.valueOf() - dateNow
-			var m = Math.abs(Check18)
-			console.log(m)
+			var DateNow = dateNow.toISOString().split('T')[0]
+			var DateUser = results[0].BirthDate.toISOString().split('T')[0]
+			console.log(DateNowa, DateUser)
+			console.log(parseInt(DateNow))
+			console.log(parseInt(DateUser))
+			
+			//var m = Math.abs(Check18)
+			//console.log(m)
 		});
 		response.render('user', {
             email: request.session.email,
