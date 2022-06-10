@@ -60,8 +60,17 @@ exports.admin = (req, res) => {
                 message: 'Już istnieje produkt o takiej nazwie' 
             })
         }
+
+        
+    if (check18 == "on"){
+        console.log("niepoiwem")
+        checkage18 = 1
+    }
+    else {
+        checkage18 = 0
+    };
             
-    db.query('INSERT INTO product SET ?', {name:name, price:price}, (error, results)=>{
+    db.query('INSERT INTO product SET ?', {name:name, price:price, checkage:checkage18}, (error, results)=>{
         if(error) {
             console.log(error);
         } else {
@@ -72,18 +81,4 @@ exports.admin = (req, res) => {
         }
     })
     });
-
-    if (check18 == "on"){
-        console.log("niepoiwem")
-        db.query('INSERT INTO products SET ?', {checkage: 1}, (error, results)=>{
-            if(error) {
-                console.log(error);
-            } else {
-                console.log(results);
-                return res.render('admin', {
-                    message: 'ok'
-                    });
-            }
-        })
-    };
 }
