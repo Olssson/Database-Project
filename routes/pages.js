@@ -29,7 +29,14 @@ router.get('/login', (req,res) => {
 });
 
 router.get('/admin', (req,res) => {
-    res.render('admin');
+	try {
+		if (req.session.type == 1) {
+			res.render('admin');
+		}
+	}
+	catch {
+		
+	}
 });
 
 router.post('/login', function(request, response) {
@@ -75,22 +82,32 @@ router.get('/user', function(request, response) {
 				var adult =  "Jesteś niepełnoletni"
 			}
 			console.log(adult)
-			if(type = 0){
+			if(request.session.type == 0){
 				var admin = 'nie jesteś adminem'
 			}else{
 				var admin = 'witaj admin'
 			}
-			console.log(admin)
+			if(admin == 'witaj admin'){
+				response.render('admin', {
+					DateUser: request.session.DateUser,
+					adult: request.session.adult,
+					email: request.session.email,
+					name: request.session.name,
+					surname: request.session.surname,
+					BirthDate: request.session.BirthDate,
+					});
+			}else{
+				response.render('user', {
+					DateUser: request.session.DateUser,
+					adult: request.session.adult,
+					email: request.session.email,
+					name: request.session.name,
+					surname: request.session.surname,
+					BirthDate: request.session.BirthDate,
+		
+					});
+				}
 		});
-		response.render('user', {
-			DateUser: request.session.DateUser,
-			adult: request.session.adult,
-            email: request.session.email,
-		 	name: request.session.name,
-			surname: request.session.surname,
-			BirthDate: request.session.BirthDate,
-
-         	});
         
 	} else {
 		response.redirect('/');
