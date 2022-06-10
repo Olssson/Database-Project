@@ -51,6 +51,32 @@
                 </div>
             </div>
         </section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th>Cena</th>
+                    <th>Ilość</th>
+                    <th>Kategoria</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each product}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{price}}</td>
+                    <td>
+                        <form action="product/{{id}}/delete" method="POST">
+                        <button type="submit" class="btn btn-sm btn-outlince-danger">&times;</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
         <section class="container content-section">
             <h2 class="section-header">Koszyk</h2>
             <div class="cart-row">
