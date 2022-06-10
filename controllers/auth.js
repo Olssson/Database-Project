@@ -51,11 +51,9 @@ exports.admin = (req, res) => {
     
     db.query("SELECT `name` FROM product WHERE `name` = ?", [name], async (error, results) => {
         console.log("dzienki")
-        const str = results;
-
-        const result = str ? str.length : 0;
-        console.log(result);        
-        if(result.lenght > 0){
+        var resultName = results;
+        console.log(resultName);        
+        if(resultName.lenght > 0){
             return res.render('admin', {
                 message: 'Już istnieje produkt o takiej nazwie' 
             })
