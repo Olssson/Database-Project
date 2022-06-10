@@ -74,7 +74,7 @@ exports.admin = (req, res) => {
         } else {
             console.log(results);
             return res.render('admin', {
-                message: 'ok'
+                message: 'Dodano pomyślnie produkt'
                 });
         }
     })
