@@ -44,18 +44,38 @@ exports.register = (req, res) => {
 }
 
 exports.admin = (req, res) => {
-    console.log(req.body);
+    console.log("dzienki działa")
     
     const {name, price, check18} = req.body;
+    console.log(req.body);
     
-    db.query("SELECT `name` FROM products WHERE `name` = ?", [name], async (error, results) => {
-        if(results.lenght > 0){
+    db.query("SELECT `name` FROM product WHERE `name` = ?", [name], async (error, results) => {
+        console.log("dzienki")
+        const str = results;
+
+        const result = str ? str.length : 0;
+        console.log(result);        
+        if(result.lenght > 0){
             return res.render('admin', {
-                message: 'Już istnieje produkt o takiej nazwie'
+                message: 'Już istnieje produkt o takiej nazwie' 
             })
         }
             
-        db.query('INSERT INTO products SET ?', {name:name, price:price, checkage:check18}, (error, results)=>{
+    db.query('INSERT INTO product SET ?', {name:name, price:price}, (error, results)=>{
+        if(error) {
+            console.log(error);
+        } else {
+            console.log(results);
+            return res.render('admin', {
+                message: 'ok'
+                });
+        }
+    })
+    });
+
+    if (check18 == "on"){
+        console.log("niepoiwem")
+        db.query('INSERT INTO products SET ?', {checkage: 1}, (error, results)=>{
             if(error) {
                 console.log(error);
             } else {
@@ -65,5 +85,5 @@ exports.admin = (req, res) => {
                     });
             }
         })
-    });
+    };
 }
