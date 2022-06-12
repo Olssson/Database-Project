@@ -63,11 +63,11 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each product}}
+                {{#each products}}
                 <tr>
-                    <td>{{id}}</td>
-                    <td>{{name}}</td>
-                    <td>{{price}}</td>
+                    <td>{{ this.name }}</td>
+                    <td>{{ this.price }}</td>
+                    <td>{{ this.checkage }}</td>
                     <td></td>
                     <td>
                         <form action="product/{{id}}/delete" method="POST">
