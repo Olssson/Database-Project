@@ -10,6 +10,10 @@
 </head>
 <body>
     <style>
+        body {
+            background-color: #1E0731;
+        }
+
         .row {
             display: flex;
         }
@@ -19,7 +23,7 @@
             justify-content: center;
             align-items: center;
             color: white;
-            background-color: rgb(77, 77, 77);
+            background-color: #320754;
         }
         .information {
             height: 10px;
@@ -39,6 +43,16 @@
             height: 200px;
             align-items: center;
         }
+
+        .info {
+            background-color: #1E0731;
+        }
+
+        .info li {
+            margin-top: 15px;
+        }
+
+
     </style>
         <nav>
         <h4>OK</h4>
@@ -59,12 +73,12 @@
             </div>
         </div>
     </div>
-    <nav>
+    <nav class="info">
         <ul>
             <li>{{email}}</li>
         </ul>
     </nav>
-    <nav>
+    <nav class="info">
         <ul>
             <li>{{BirthDate}}</li>
         </ul>

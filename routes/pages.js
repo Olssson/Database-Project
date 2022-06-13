@@ -68,8 +68,6 @@ router.post('/login', function(request, response) {
 		response.end();
 	}
 });
-let products = []
-
 router.post('/admin', function(request, response) {
 	console.log("Poważnie? To zaiste fenomenalnie")
 	
