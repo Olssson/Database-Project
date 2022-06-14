@@ -101,3 +101,34 @@ function updateCartTotal() {
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText =  total + ' zł'
 }
+
+async function showProducts(req, res) {
+    let products = []
+    
+    console.log("showProducts")
+	
+    connection.query('SELECT * FROM product', function(error, results, fields) {
+        if (results.length > 0) {
+            request.session = products
+            // request.session.loggedin = true;
+            // request.session.email = email;
+            // request.session.type = results[0].type;
+            // request.session.name = results[0].name;
+            // request.session.price = results[0].price;
+            // request.session.checkage = results[0].checkage;
+
+            response.redirect('/admin');
+        } else {
+            response.send('Coś poszło nie tak');
+        }
+        response.end();
+    });
+  
+    res.render('index', { 
+      title: 'Lista produktów', 
+      products: products, 
+      message: res.message, 
+      kategoria: req.query.kategoria,
+      userLogin: req.session?.userLogin
+     })
+  }

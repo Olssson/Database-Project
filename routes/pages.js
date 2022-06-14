@@ -10,6 +10,8 @@ const connection = mysql.createConnection({
 	database : 'login'
 });
 
+// const showProducts = require('../public/script')
+
 
 router.get('/', (req,res) => {
 	if (req.session.loggedin) {
@@ -68,27 +70,30 @@ router.post('/login', function(request, response) {
 		response.end();
 	}
 });
-router.post('/admin', function(request, response) {
-	console.log("Poważnie? To zaiste fenomenalnie")
-	
-		connection.query('SELECT * FROM product', function(error, results, fields) {
-			if (results.length > 0) {
-				request.session = products
-				// request.session.loggedin = true;
-				// request.session.email = email;
-				// request.session.type = results[0].type;
-				// request.session.name = results[0].name;
-				// request.session.price = results[0].price;
-				// request.session.checkage = results[0].checkage;
-				console.log("No to pauza")
 
-				response.redirect('/admin');
-			} else {
-				response.send('Coś poszło nie trak');
-			}
-			response.end();
-		});
-});
+// router.get('/', showProducts)
+
+// router.post('/admin', function(request, response) {
+// 	console.log("Poważnie? To zaiste fenomenalnie")
+	
+// 		connection.query('SELECT * FROM product', function(error, results, fields) {
+// 			if (results.length > 0) {
+// 				request.session = products
+// 				// request.session.loggedin = true;
+// 				// request.session.email = email;
+// 				// request.session.type = results[0].type;
+// 				// request.session.name = results[0].name;
+// 				// request.session.price = results[0].price;
+// 				// request.session.checkage = results[0].checkage;
+// 				console.log("No to pauza")
+
+// 				response.redirect('/admin');
+// 			} else {
+// 				response.send('Coś poszło nie trak');
+// 			}
+// 			response.end();
+// 		});
+// });
 router.get('/user', function(request, response) {
 	if (request.session.loggedin) {
 		
